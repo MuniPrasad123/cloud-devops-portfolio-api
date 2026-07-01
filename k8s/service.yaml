@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloud-devops-portfolio-api
+  labels:
+    app: cloud-devops-portfolio-api
+spec:
+  type: LoadBalancer
+  selector:
+    app: cloud-devops-portfolio-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080

@@ -1,0 +1,17 @@
+services:
+  cloud-devops-portfolio-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cloud-devops-portfolio-api:local
+    container_name: cloud-devops-portfolio-api
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
